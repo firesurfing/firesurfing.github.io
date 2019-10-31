@@ -1,0 +1,1007 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="第1篇文章，用于测试github pages~ Series# 通过列表创建，也可以传入index列表 test = Series([1,2,3,4], [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;, &amp;apos;d&amp;apos;])  # output Out[4]: a    1 b    2 c    3 d    4 dtype: int64  t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pandas学习笔记">
+<meta property="og:url" content="http://yoursite.com/2017/03/06/pandas学习笔记/index.html">
+<meta property="og:site_name" content="firesurfing的博客">
+<meta property="og:description" content="第1篇文章，用于测试github pages~ Series# 通过列表创建，也可以传入index列表 test = Series([1,2,3,4], [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;, &amp;apos;d&amp;apos;])  # output Out[4]: a    1 b    2 c    3 d    4 dtype: int64  t">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-29T04:50:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pandas学习笔记">
+<meta name="twitter:description" content="第1篇文章，用于测试github pages~ Series# 通过列表创建，也可以传入index列表 test = Series([1,2,3,4], [&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;, &amp;apos;d&amp;apos;])  # output Out[4]: a    1 b    2 c    3 d    4 dtype: int64  t">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/06/pandas学习笔记/">
+
+
+
+
+
+  <title> pandas学习笔记 | firesurfing的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">firesurfing的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/06/pandas学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="firesurfing">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="firesurfing的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                pandas学习笔记
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-06T14:09:02+00:00">
+                2017-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/06/pandas学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/06/pandas学习笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/06/pandas学习笔记/" class="leancloud_visitors" data-flag-title="pandas学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>第1篇文章，用于测试github pages~</p>
+<h2 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h2><pre><code># 通过列表创建，也可以传入index列表
+test = Series([1,2,3,4], [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;])
+
+# output
+Out[4]:
+a    1
+b    2
+c    3
+d    4
+dtype: int64
+
+test.values
+array([1, 2, 3, 4])
+
+test.index
+Index([u&apos;a&apos;, u&apos;b&apos;, u&apos;c&apos;, u&apos;d&apos;], dtype=&apos;object&apos;)
+
+test[test &gt; 2]
+Out[18]:
+c    3
+d    4
+dtype: int64
+
+# 两个Series对象运算，会根据index对其进行对齐运算
+</code></pre><h2 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h2><p>既有行索引，也有列索引，可以看作是由Series组成的字典</p>
+<pre><code># 简单创建
+In [19]: data = {&apos;id&apos;: [0,1,2], &apos;name&apos;: [&apos;jack&apos;, &apos;bob&apos;, &apos;ali&apos;], &apos;age&apos;: [12,32,11]}
+
+In [20]: data
+Out[20]: {&apos;age&apos;: [12, 32, 11], &apos;id&apos;: [0, 1, 2], &apos;name&apos;: [&apos;jack&apos;, &apos;bob&apos;, &apos;ali&apos;]}
+
+In [21]: test = DataFrame(data)
+
+In [22]: test
+Out[22]:
+age  id  name
+0   12   0  jack
+1   32   1   bob
+2   11   2   ali
+
+# 也可以指定列索引，按照顺序创建
+In [23]: test = DataFrame(data, columns = [&apos;age&apos;, &apos;name&apos;, &apos;id&apos;])
+
+In [24]: test
+Out[24]:
+age  name  id
+0   12  jack   0
+1   32   bob   1
+2   11   ali   2
+
+# 不存在的列，例如wahaha，会产生NA值，创建时行索引可以用index指定
+In [25]: test = DataFrame(data, columns = [&apos;age&apos;, &apos;name&apos;, &apos;id&apos;, &apos;wahaha&apos;], index = [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;])
+
+In [26]: test
+Out[26]:
+age  name  id wahaha
+one     12  jack   0    NaN
+two     32   bob   1    NaN
+three   11   ali   2    NaN
+
+# 行列索引
+In [31]: test.index
+Out[31]: Index([u&apos;one&apos;, u&apos;two&apos;, u&apos;three&apos;], dtype=&apos;object&apos;)
+In [32]: test.columns
+Out[32]: Index([u&apos;age&apos;, u&apos;name&apos;, u&apos;id&apos;, u&apos;wahaha&apos;], dtype=&apos;object&apos;)
+
+# values，以二维数组形式返回
+In [41]: test.values
+Out[41]:
+array([[12, &apos;jack&apos;, 0],
+       [32, &apos;bob&apos;, 1],
+       [11, &apos;ali&apos;, 2]], dtype=object)
+
+# 列引用，输出是普通的Series对象
+In [33]: test.age
+Out[33]:
+one      12
+two      32
+three    11
+Name: age, dtype: int64
+
+# 行引用，输出是普通的Series对象
+In [34]: test.ix[&apos;two&apos;]
+Out[34]:
+age        32
+name      bob
+id          1
+wahaha    NaN
+Name: two, dtype: object
+
+# 通过赋值批量设置列值、添加新列
+In [35]: test[&apos;wahaha&apos;] = 3
+In [36]: test
+Out[36]:
+age  name  id  wahaha
+one     12  jack   0       3
+two     32   bob   1       3
+three   11   ali   2       3
+
+# 删除整列
+del test[&apos;wahaha&apos;]
+
+# 转置
+In [38]: test
+Out[38]:
+       age  name  id
+one     12  jack   0
+two     32   bob   1
+three   11   ali   2
+In [39]: test.T
+Out[39]:
+one  two three
+age     12   32    11
+name  jack  bob   ali
+id       0    1     2
+</code></pre><h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># reindex</span></span><br><span class="line">In [<span class="number">46</span>]: test</span><br><span class="line">Out[<span class="number">46</span>]:</span><br><span class="line">age  name  id</span><br><span class="line">one     <span class="number">12</span>  jack   <span class="number">0</span></span><br><span class="line">two     <span class="number">32</span>   bob   <span class="number">1</span></span><br><span class="line">three   <span class="number">11</span>   ali   <span class="number">2</span></span><br><span class="line">In [<span class="number">48</span>]: test.reindex([<span class="string">'two'</span>, <span class="string">'one'</span>, <span class="string">'three'</span>, <span class="string">'news'</span>])</span><br><span class="line">Out[<span class="number">48</span>]:</span><br><span class="line">age  name   id</span><br><span class="line">two    <span class="number">32.0</span>   bob  <span class="number">1.0</span></span><br><span class="line">one    <span class="number">12.0</span>  jack  <span class="number">0.0</span></span><br><span class="line">three  <span class="number">11.0</span>   ali  <span class="number">2.0</span></span><br><span class="line">news    NaN   NaN  NaN</span><br><span class="line"></span><br><span class="line"><span class="comment"># reindex with fill_value</span></span><br><span class="line">In [<span class="number">49</span>]: test.reindex([<span class="string">'two'</span>, <span class="string">'one'</span>, <span class="string">'three'</span>, <span class="string">'news'</span>], fill_value=<span class="number">0</span>)</span><br><span class="line">Out[<span class="number">49</span>]:</span><br><span class="line">age  name  id</span><br><span class="line">two     <span class="number">32</span>   bob   <span class="number">1</span></span><br><span class="line">one     <span class="number">12</span>  jack   <span class="number">0</span></span><br><span class="line">three   <span class="number">11</span>   ali   <span class="number">2</span></span><br><span class="line">news     <span class="number">0</span>     <span class="number">0</span>   <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 向前填充</span></span><br><span class="line">In [<span class="number">55</span>]: obj = Series([<span class="string">'wa'</span>, <span class="string">'ha'</span>, <span class="string">'he'</span>], index = [<span class="number">0</span>,<span class="number">2</span>,<span class="number">4</span>])</span><br><span class="line">In [<span class="number">56</span>]: obj</span><br><span class="line">Out[<span class="number">56</span>]:</span><br><span class="line"><span class="number">0</span>    wa</span><br><span class="line"><span class="number">2</span>    ha</span><br><span class="line"><span class="number">4</span>    he</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line">In [<span class="number">57</span>]: obj.reindex(range(<span class="number">6</span>), method=<span class="string">'ffill'</span>)</span><br><span class="line">Out[<span class="number">57</span>]:</span><br><span class="line"><span class="number">0</span>    wa</span><br><span class="line"><span class="number">1</span>    wa</span><br><span class="line"><span class="number">2</span>    ha</span><br><span class="line"><span class="number">3</span>    ha</span><br><span class="line"><span class="number">4</span>    he</span><br><span class="line"><span class="number">5</span>    he</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line"><span class="comment"># 向后填充</span></span><br><span class="line">In [<span class="number">59</span>]: obj.reindex(range(<span class="number">6</span>), method=<span class="string">'bfill'</span>)</span><br><span class="line">Out[<span class="number">59</span>]:</span><br><span class="line"><span class="number">0</span>     wa</span><br><span class="line"><span class="number">1</span>     ha</span><br><span class="line"><span class="number">2</span>     ha</span><br><span class="line"><span class="number">3</span>     he</span><br><span class="line"><span class="number">4</span>     he</span><br><span class="line"><span class="number">5</span>    NaN</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line"><span class="comment"># DataFrame reindex</span></span><br><span class="line">In [<span class="number">60</span>]: test</span><br><span class="line">Out[<span class="number">60</span>]:</span><br><span class="line">age  name  id</span><br><span class="line">one     <span class="number">12</span>  jack   <span class="number">0</span></span><br><span class="line">two     <span class="number">32</span>   bob   <span class="number">1</span></span><br><span class="line">three   <span class="number">11</span>   ali   <span class="number">2</span></span><br><span class="line">In [<span class="number">62</span>]: test.reindex([<span class="string">'three'</span>, <span class="string">'two'</span>, <span class="string">'one'</span>], columns = [<span class="string">'id'</span>, <span class="string">'name'</span>, <span class="string">'age'</span>])</span><br><span class="line">Out[<span class="number">62</span>]:</span><br><span class="line">id  name  age</span><br><span class="line">three   <span class="number">2</span>   ali   <span class="number">11</span></span><br><span class="line">two     <span class="number">1</span>   bob   <span class="number">32</span></span><br><span class="line">one     <span class="number">0</span>  jack   <span class="number">12</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 其实reindex就是对行列的重新排序</span></span><br><span class="line"><span class="comment"># 两个不对齐的DataFrame相加，默认不对齐的位置是NA，不参与运算</span></span><br><span class="line"><span class="comment"># 也可以用data1.add(data2, fill_value = 0)，使用0来填充</span></span><br></pre></td></tr></table></figure>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">3</span>]: test = Series(range(<span class="number">4</span>), [<span class="string">'d'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>])</span><br><span class="line">In [<span class="number">4</span>]: test</span><br><span class="line">Out[<span class="number">4</span>]: </span><br><span class="line">d    <span class="number">0</span></span><br><span class="line">b    <span class="number">1</span></span><br><span class="line">c    <span class="number">2</span></span><br><span class="line">a    <span class="number">3</span></span><br><span class="line">dtype: int64</span><br><span class="line">In [<span class="number">5</span>]: test.sort_index()</span><br><span class="line">Out[<span class="number">5</span>]: </span><br><span class="line">a    <span class="number">3</span></span><br><span class="line">b    <span class="number">1</span></span><br><span class="line">c    <span class="number">2</span></span><br><span class="line">d    <span class="number">0</span></span><br><span class="line">dtype: int64</span><br><span class="line"></span><br><span class="line">frame = DataFrame(np.arange(<span class="number">8</span>).reshape(<span class="number">2</span>, <span class="number">4</span>), index = [<span class="string">'three'</span>, <span class="string">'one'</span>],  columns = [<span class="string">'d'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'b'</span>])</span><br><span class="line">In [<span class="number">10</span>]: frame</span><br><span class="line">Out[<span class="number">10</span>]: </span><br><span class="line">       d  a  c  b</span><br><span class="line">three  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span></span><br><span class="line">one    <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span></span><br><span class="line">In [<span class="number">11</span>]: frame.sort_index()</span><br><span class="line">Out[<span class="number">11</span>]: </span><br><span class="line">       d  a  c  b</span><br><span class="line">one    <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span></span><br><span class="line">three  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span></span><br><span class="line">In [<span class="number">12</span>]: frame.sort_index(axis=<span class="number">1</span>)</span><br><span class="line">Out[<span class="number">12</span>]: </span><br><span class="line">       a  b  c  d</span><br><span class="line">three  <span class="number">1</span>  <span class="number">3</span>  <span class="number">2</span>  <span class="number">0</span></span><br><span class="line">one    <span class="number">5</span>  <span class="number">7</span>  <span class="number">6</span>  <span class="number">4</span></span><br><span class="line"><span class="comment"># 默认降序排列，ascending=False升序排列</span></span><br><span class="line">In [<span class="number">13</span>]: frame.sort_index(axis=<span class="number">1</span>, ascending=<span class="literal">False</span>)</span><br><span class="line">Out[<span class="number">13</span>]: </span><br><span class="line">       d  c  b  a</span><br><span class="line">three  <span class="number">0</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">1</span></span><br><span class="line">one    <span class="number">4</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h2 id="统计方法"><a href="#统计方法" class="headerlink" title="统计方法"></a>统计方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">27</span>]: test</span><br><span class="line">Out[<span class="number">27</span>]: </span><br><span class="line">   num1  num2  num3</span><br><span class="line">a     <span class="number">0</span>     <span class="number">1</span>     <span class="number">2</span></span><br><span class="line">b     <span class="number">3</span>     <span class="number">4</span>     <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认情况，或者axis=0，是按列统计</span></span><br><span class="line"><span class="comment"># 缺失值默认跳过，如果不想跳过可以加skipna = False</span></span><br><span class="line">In [<span class="number">7</span>]: test.sum()</span><br><span class="line">Out[<span class="number">7</span>]: </span><br><span class="line">num1    <span class="number">3</span></span><br><span class="line">num2    <span class="number">5</span></span><br><span class="line">num3    <span class="number">7</span></span><br><span class="line">dtype: int64</span><br><span class="line">In [<span class="number">8</span>]: test.sum(axis=<span class="number">0</span>)</span><br><span class="line">Out[<span class="number">8</span>]: </span><br><span class="line">num1    <span class="number">3</span></span><br><span class="line">num2    <span class="number">5</span></span><br><span class="line">num3    <span class="number">7</span></span><br><span class="line">dtype: int64</span><br><span class="line"></span><br><span class="line"><span class="comment"># axis=1按行统计</span></span><br><span class="line">In [<span class="number">9</span>]: test.sum(axis=<span class="number">1</span>)</span><br><span class="line">Out[<span class="number">9</span>]: </span><br><span class="line">a     <span class="number">3</span></span><br><span class="line">b    <span class="number">12</span></span><br><span class="line">dtype: int64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 累积和，按列统计，按列的方向向下传播</span></span><br><span class="line">In [<span class="number">28</span>]: test.cumsum()</span><br><span class="line">Out[<span class="number">28</span>]: </span><br><span class="line">   num1  num2  num3</span><br><span class="line">a     <span class="number">0</span>     <span class="number">1</span>     <span class="number">2</span></span><br><span class="line">b     <span class="number">3</span>     <span class="number">5</span>     <span class="number">7</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 按行统计</span></span><br><span class="line">In [<span class="number">29</span>]: test.cumsum(axis=<span class="number">1</span>)</span><br><span class="line">Out[<span class="number">29</span>]: </span><br><span class="line">   num1  num2  num3</span><br><span class="line">a     <span class="number">0</span>     <span class="number">1</span>     <span class="number">3</span></span><br><span class="line">b     <span class="number">3</span>     <span class="number">7</span>    <span class="number">12</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 其他常用：标准差std、计数count、方差var</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 唯一值</span></span><br><span class="line">In [<span class="number">34</span>]: s = Series([<span class="number">1</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">In [<span class="number">35</span>]: s.unique()</span><br><span class="line">Out[<span class="number">35</span>]: array([<span class="number">1</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 值计数</span></span><br><span class="line">In [<span class="number">36</span>]: s.value_counts()</span><br><span class="line">Out[<span class="number">36</span>]: </span><br><span class="line"><span class="number">5</span>    <span class="number">4</span></span><br><span class="line"><span class="number">1</span>    <span class="number">3</span></span><br><span class="line"><span class="number">2</span>    <span class="number">2</span></span><br><span class="line"><span class="number">4</span>    <span class="number">1</span></span><br><span class="line"><span class="number">3</span>    <span class="number">1</span></span><br><span class="line">dtype: int64</span><br></pre></td></tr></table></figure>
+<h2 id="填充缺失值"><a href="#填充缺失值" class="headerlink" title="填充缺失值"></a>填充缺失值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">46</span>]: ex.ix[<span class="number">1</span>:, <span class="number">1</span>] = np.nan</span><br><span class="line">In [<span class="number">47</span>]: ex</span><br><span class="line">Out[<span class="number">47</span>]: </span><br><span class="line">   <span class="number">0</span>    <span class="number">1</span>  <span class="number">2</span></span><br><span class="line"><span class="number">0</span>  <span class="number">1</span>  <span class="number">2.0</span>  <span class="number">3</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3</span>  NaN  <span class="number">5</span></span><br><span class="line"><span class="number">2</span>  <span class="number">6</span>  NaN  <span class="number">8</span></span><br><span class="line">In [<span class="number">48</span>]: ex.fillna(<span class="number">0</span>)</span><br><span class="line">Out[<span class="number">48</span>]: </span><br><span class="line">   <span class="number">0</span>    <span class="number">1</span>  <span class="number">2</span></span><br><span class="line"><span class="number">0</span>  <span class="number">1</span>  <span class="number">2.0</span>  <span class="number">3</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3</span>  <span class="number">0.0</span>  <span class="number">5</span></span><br><span class="line"><span class="number">2</span>  <span class="number">6</span>  <span class="number">0.0</span>  <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 就地填充</span></span><br><span class="line">In [<span class="number">50</span>]: ex.fillna(<span class="number">0</span>, inplace = <span class="literal">True</span>)</span><br><span class="line">In [<span class="number">51</span>]: ex</span><br><span class="line">Out[<span class="number">51</span>]: </span><br><span class="line">   <span class="number">0</span>    <span class="number">1</span>  <span class="number">2</span></span><br><span class="line"><span class="number">0</span>  <span class="number">1</span>  <span class="number">2.0</span>  <span class="number">3</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3</span>  <span class="number">0.0</span>  <span class="number">5</span></span><br><span class="line"><span class="number">2</span>  <span class="number">6</span>  <span class="number">0.0</span>  <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># fillna可以传入method，也可以向前向后填充</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 技巧：使用平均值填充</span></span><br><span class="line">In [<span class="number">56</span>]: s</span><br><span class="line">Out[<span class="number">56</span>]: </span><br><span class="line"><span class="number">0</span>     <span class="number">1.0</span></span><br><span class="line"><span class="number">1</span>     <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>     <span class="number">5.0</span></span><br><span class="line"><span class="number">3</span>     NaN</span><br><span class="line"><span class="number">4</span>     <span class="number">5.0</span></span><br><span class="line"><span class="number">5</span>     NaN</span><br><span class="line"><span class="number">6</span>     <span class="number">1.0</span></span><br><span class="line"><span class="number">7</span>     <span class="number">2.0</span></span><br><span class="line"><span class="number">8</span>     <span class="number">2.0</span></span><br><span class="line"><span class="number">9</span>     <span class="number">3.0</span></span><br><span class="line"><span class="number">10</span>    <span class="number">4.0</span></span><br><span class="line">dtype: float64</span><br><span class="line"></span><br><span class="line">In [<span class="number">57</span>]: s.fillna(s.mean())</span><br><span class="line">Out[<span class="number">57</span>]: </span><br><span class="line"><span class="number">0</span>     <span class="number">1.000000</span></span><br><span class="line"><span class="number">1</span>     <span class="number">1.000000</span></span><br><span class="line"><span class="number">2</span>     <span class="number">5.000000</span></span><br><span class="line"><span class="number">3</span>     <span class="number">2.666667</span></span><br><span class="line"><span class="number">4</span>     <span class="number">5.000000</span></span><br><span class="line"><span class="number">5</span>     <span class="number">2.666667</span></span><br><span class="line"><span class="number">6</span>     <span class="number">1.000000</span></span><br><span class="line"><span class="number">7</span>     <span class="number">2.000000</span></span><br><span class="line"><span class="number">8</span>     <span class="number">2.000000</span></span><br><span class="line"><span class="number">9</span>     <span class="number">3.000000</span></span><br><span class="line"><span class="number">10</span>    <span class="number">4.000000</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+<h2 id="数据加载"><a href="#数据加载" class="headerlink" title="数据加载"></a>数据加载</h2><pre><code># 按照逗号进行分割，默认以第一行为列名
+df = pd.read_csv(&apos;file&apos;)
+
+# read_table更灵活，可以指定分隔符，此处的分隔符是正则表达式，匹配任意多个空格
+df = pd.read_table(&apos;file&apos;, sep = &apos;/s+&apos;)
+
+# 参数skiprows = [0, 2, 3]，可以指定跳过的行数
+# 参数na_values = [&apos;NULL&apos;]，可以指定缺失值有哪些，pandas使用nan来占位
+# 参数nrows = 5，可以指定只读取一定量的行
+
+# 读取excel文件
+In [7]: xls_file = pd.ExcelFile(&apos;test.xlsx&apos;)
+In [9]: df = xls_file.parse(&apos;Sheet1&apos;)
+
+In [10]: df
+Out[10]: 
+   id  name  age
+0   1  haha   13
+1   2  hehe   15
+</code></pre><h2 id="数据合并"><a href="#数据合并" class="headerlink" title="数据合并"></a>数据合并</h2><pre><code>In [3]: df1 = DataFrame({&apos;key&apos;: [&apos;b&apos;, &apos;b&apos;, &apos;a&apos;, &apos;c&apos;, &apos;a&apos;, &apos;b&apos;], &apos;data1&apos;: range(6)})
+
+In [4]: df1
+Out[4]: 
+   data1 key
+0      0   b
+1      1   b
+2      2   a
+3      3   c
+4      4   a
+5      5   b
+
+In [5]: df2 = DataFrame({&apos;key&apos;: [&apos;a&apos;, &apos;b&apos;, &apos;a&apos;, &apos;b&apos;, &apos;d&apos;], &apos;data2&apos;: range(5)})
+
+In [6]: df2
+Out[6]: 
+   data2 key
+0      0   a
+1      1   b
+2      2   a
+3      3   b
+4      4   d
+
+# 默认是笛卡尔乘积，on可以传入数组，以多个键连接
+# 如果左右列名不一样，可以用left_on、right_on
+# sort属性默认为True，处理大数据时可以设置为False，增强性能
+In [8]: pd.merge(df1, df2, on = &apos;key&apos;)
+Out[8]: 
+   data1 key  data2
+0      0   b      1
+1      0   b      3
+2      1   b      1
+3      1   b      3
+4      5   b      1
+5      5   b      3
+6      2   a      0
+7      2   a      2
+8      4   a      0
+9      4   a      2
+
+# 左连接
+In [9]: pd.merge(df1, df2, on = &apos;key&apos;, how = &apos;left&apos;)
+Out[9]: 
+    data1 key  data2
+0       0   b    1.0
+1       0   b    3.0
+2       1   b    1.0
+3       1   b    3.0
+4       2   a    0.0
+5       2   a    2.0
+6       3   c    NaN
+7       4   a    0.0
+8       4   a    2.0
+9       5   b    1.0
+10      5   b    3.0
+
+# 外连接
+In [10]: pd.merge(df1, df2, on = &apos;key&apos;, how = &apos;outer&apos;)
+Out[10]: 
+    data1 key  data2
+0     0.0   b    1.0
+1     0.0   b    3.0
+2     1.0   b    1.0
+3     1.0   b    3.0
+4     5.0   b    1.0
+5     5.0   b    3.0
+6     2.0   a    0.0
+7     2.0   a    2.0
+8     4.0   a    0.0
+9     4.0   a    2.0
+10    3.0   c    NaN
+11    NaN   d    4.0
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/10/spring boot配置（原理学习）/" rel="prev" title="spring boot配置（原理学习）">
+                spring boot配置（原理学习） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="firesurfing">
+          <p class="site-author-name" itemprop="name">firesurfing</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Series"><span class="nav-number">1.</span> <span class="nav-text">Series</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataFrame"><span class="nav-number">2.</span> <span class="nav-text">DataFrame</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作"><span class="nav-number">3.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">4.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#统计方法"><span class="nav-number">5.</span> <span class="nav-text">统计方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#填充缺失值"><span class="nav-number">6.</span> <span class="nav-text">填充缺失值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据加载"><span class="nav-number">7.</span> <span class="nav-text">数据加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据合并"><span class="nav-number">8.</span> <span class="nav-text">数据合并</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">firesurfing</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'firesurfing';
+      var disqus_identifier = '2017/03/06/pandas学习笔记/';
+
+      var disqus_title = "pandas学习笔记";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("LWpltyVHXFeQ8J0BA5zazOdM-gzGzoHsz", "pg5OHW527Hhfo6bhQWFYkXtH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
